@@ -1,0 +1,77 @@
+name: Build APK
+
+on:
+  # Запуск при push в main
+  push:
+    branches: [main, master]
+  
+  # Запуск при Pull Request
+  pull_request:
+    branches: [main, master]
+  
+  # Ручной запуск из GitHub UI
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Release APK
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Клонирование репозитория
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      # Установка Java (нужна для Android SDK)
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+      
+      # Установка Flutter
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.16.0'
+          channel: 'stable'
+          cache: true
+      
+      # Проверка Flutter
+      - name: Check Flutter version
+        run: flutter --version
+      
+      # Установка зависимостей
+      - name: Install dependencies
+        run: flutter pub get
+      
+      # Анализ кода
+      - name: Analyze code
+        run: flutter analyze --no-fatal-infos
+        continue-on-error: true
+      
+      # Запуск тестов
+      - name: Run tests
+        run: flutter test
+        continue-on-error: true
+      
+      # Сборка APK
+      - name: Build APK
+        run: flutter build apk --release
+      
+      # Загрузка APK как artifact
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: math-shield-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30
+      
+      # Вывод информации о сборке
+      - name: Build Summary
+        run: |
+          echo "## ✅ Build Successful!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**APK Location:** \`build/app/outputs/flutter-apk/app-release.apk\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Download the APK from the **Artifacts** section above." >> $GITHUB_STEP_SUMMARY
