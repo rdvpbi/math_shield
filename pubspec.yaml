@@ -1,0 +1,80 @@
+name: math_shield
+description: Educational math game for kids 5-9 years old. Learn multiplication through platformer adventure with bosses.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # State Management
+  flutter_riverpod: ^2.4.10
+  riverpod_annotation: ^2.3.5
+  
+  # Navigation
+  go_router: ^13.2.0
+  
+  # Local Storage
+  shared_preferences: ^2.2.2
+  
+  # Audio
+  audioplayers: ^5.2.1
+  
+  # Game Engine
+  flame: ^1.15.0
+  
+  # Code Generation Annotations
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.8.1
+  
+  # UI Helpers
+  flutter_animate: ^4.5.0
+  gap: ^3.0.1
+  
+  # Functional Programming (Either type)
+  dartz: ^0.10.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  
+  # Code Generators
+  riverpod_generator: ^2.3.11
+  build_runner: ^2.4.8
+  freezed: ^2.4.7
+  json_serializable: ^6.7.1
+  
+  # App Icon Generator
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/logo/logo_main.png"
+  adaptive_icon_background: "#1a1a2e"
+  adaptive_icon_foreground: "assets/logo/logo_adaptive.png"
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/logo/
+    - assets/ui/
+    - assets/icons/
+    - assets/worlds/
+    - assets/bosses/
+    - assets/characters/
+    - assets/fx/
+    - assets/audio/music/
+    - assets/audio/sfx/
+  
+  fonts:
+    - family: MathShield
+      fonts:
+        - asset: assets/fonts/MathShield-Regular.ttf
+        - asset: assets/fonts/MathShield-Bold.ttf
+          weight: 700
