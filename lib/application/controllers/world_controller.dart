@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/entities/world_entity.dart';
 import '../../domain/repositories/world_repository.dart';
+import '../providers/providers.dart';
 import '../state/world_state.dart';
 
 /// Контроллер миров
@@ -15,7 +16,7 @@ class WorldController extends Notifier<WorldState> {
 
   @override
   WorldState build() {
-    _worldRepository = ref.read(worldRepositoryProvider);
+    _worldRepository = ref.read(worldRepoProvider);
     return WorldState.initial();
   }
 
@@ -206,11 +207,6 @@ class WorldController extends Notifier<WorldState> {
     state = state.updateWorld(world);
   }
 }
-
-/// Provider для WorldRepository (должен быть переопределён)
-final worldRepositoryProvider = Provider<WorldRepository>((ref) {
-  throw UnimplementedError('worldRepositoryProvider must be overridden');
-});
 
 /// Provider для WorldController
 final worldControllerProvider =

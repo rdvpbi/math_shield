@@ -8,6 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/config/game_constants.dart';
 import '../../domain/entities/player_entity.dart';
 import '../../domain/repositories/player_repository.dart';
+import '../providers/providers.dart';
 import '../state/game_state.dart';
 
 /// Контроллер игры
@@ -16,7 +17,7 @@ class GameController extends Notifier<GameState> {
 
   @override
   GameState build() {
-    _playerRepository = ref.read(playerRepositoryProvider);
+    _playerRepository = ref.read(playerRepoProvider);
     return GameState.initial();
   }
 
@@ -254,11 +255,6 @@ class GameController extends Notifier<GameState> {
     );
   }
 }
-
-/// Provider для PlayerRepository (должен быть переопределён)
-final playerRepositoryProvider = Provider<PlayerRepository>((ref) {
-  throw UnimplementedError('playerRepositoryProvider must be overridden');
-});
 
 /// Provider для GameController
 final gameControllerProvider =
