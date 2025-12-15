@@ -60,6 +60,12 @@ abstract class TimeConstants {
 
   /// Задержка перед автопереходом после поражения (мс)
   static const int defeatDelayMs = 2000;
+
+  /// Время предупреждения (жёлтый таймер)
+  static const int warningTimeSeconds = 5;
+
+  /// Критическое время (красный таймер)
+  static const int criticalTimeSeconds = 3;
 }
 
 /// Константы очков и наград
@@ -111,6 +117,12 @@ abstract class ComboConstants {
 
   /// Комбо для золотых искр (визуальный эффект)
   static const int goldenSparklesComboThreshold = 3;
+
+  /// Порог комбо для "Great!" звука
+  static const int comboThresholdGreat = 3;
+
+  /// Множитель на единицу комбо
+  static const double multiplierPerCombo = 0.1;
 
   /// Вычисляет множитель урона для текущего комбо
   static double calculateMultiplier(int combo) {
@@ -210,6 +222,14 @@ abstract class UIConstants {
 
   /// Радиус скругления карточек
   static const double cardBorderRadius = 24.0;
+
+  /// Радиусы скругления (общие)
+  static const double borderRadiusSmall = 8.0;
+  static const double borderRadiusMedium = 16.0;
+  static const double borderRadiusLarge = 24.0;
+
+  /// Размер кнопки мира на хабе
+  static const double worldButtonSize = 80.0;
 
   /// Стандартные отступы
   static const double paddingSmall = 8.0;
