@@ -34,14 +34,20 @@ android {
             // Используем debug signing для простоты
             // Для публикации в Play Store нужен отдельный keystore
             signingConfig = signingConfigs.getByName("debug")
-            
+
             // Оптимизация для релиза
-            isMinifyEnabled = false  // true может вызвать проблемы с Flutter
-            isShrinkResources = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
-        
+
         debug {
             isDebuggable = true
+            isMinifyEnabled = false
         }
     }
     

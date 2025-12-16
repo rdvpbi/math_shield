@@ -72,9 +72,10 @@ flutter:
     - assets/audio/music/
     - assets/audio/sfx/
   
-  fonts:
-    - family: MathShield
-      fonts:
-        - asset: assets/fonts/MathShield-Regular.ttf
-        - asset: assets/fonts/MathShield-Bold.ttf
-          weight: 700
+  # Кастомные шрифты (раскомментировать после добавления файлов)
+  # fonts:
+  #   - family: MathShield
+  #     fonts:
+  #       - asset: assets/fonts/MathShield-Regular.ttf
+  #       - asset: assets/fonts/MathShield-Bold.ttf
+  #         weight: 700
