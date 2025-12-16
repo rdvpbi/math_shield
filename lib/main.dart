@@ -17,19 +17,26 @@ void main() async {
   // Инициализируем Flutter binding
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Настраиваем ориентацию экрана (только портрет для детей)
+  // Настраиваем ориентацию экрана (landscape для игры)
   await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
   ]);
 
-  // Настраиваем системный UI
+  // Полноэкранный режим (immersive)
+  await SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.immersiveSticky,
+    overlays: [],
+  );
+
+  // Настраиваем системный UI (для случаев когда UI виден)
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.light,
-      systemNavigationBarColor: Colors.black,
+      systemNavigationBarColor: Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.light,
+      systemNavigationBarContrastEnforced: false,
     ),
   );
 
@@ -49,7 +56,9 @@ void main() async {
         // Переопределяем provider для SharedPreferences
         sharedPreferencesProvider.overrideWithValue(sharedPreferences),
       ],
-      child: const MathShieldApp(),
+      child: const AudioLifecycleWrapper(
+        child: MathShieldApp(),
+      ),
     ),
   );
 }
