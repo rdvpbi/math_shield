@@ -16,6 +16,9 @@ abstract class AppTheme {
   // ОСНОВНАЯ ТЕМА (ТЁМНАЯ)
   // ============================================================================
 
+  /// Алиас для совместимости
+  static ThemeData get darkTheme => dark;
+
   /// Тёмная тема приложения (основная)
   static ThemeData get dark => ThemeData(
         useMaterial3: true,
@@ -253,7 +256,7 @@ abstract class AppTheme {
   // КАРТОЧКИ
   // ============================================================================
 
-  static CardTheme get _cardTheme => CardTheme(
+  static CardThemeData get _cardTheme => CardThemeData(
         color: AppColors.surface,
         elevation: 4,
         shadowColor: AppColors.shadow,
@@ -374,7 +377,7 @@ abstract class AppTheme {
   // ДИАЛОГИ
   // ============================================================================
 
-  static DialogTheme get _dialogTheme => DialogTheme(
+  static DialogThemeData get _dialogTheme => DialogThemeData(
         backgroundColor: AppColors.surface,
         elevation: 8,
         shadowColor: AppColors.shadow,

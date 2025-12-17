@@ -133,22 +133,20 @@ final generateExampleBatchUseCaseProvider =
 
 /// Provider для CheckAnswerUseCase
 final checkAnswerUseCaseProvider = Provider<CheckAnswerUseCase>((ref) {
-  return const CheckAnswerUseCase();
+  final repository = ref.watch(exampleRepoProvider);
+  return CheckAnswerUseCase(repository);
 });
 
-/// Provider для ValidateAnswerUseCase
-final validateAnswerUseCaseProvider = Provider<ValidateAnswerUseCase>((ref) {
-  return const ValidateAnswerUseCase();
+/// Provider для CheckAnswerQuickUseCase (быстрая проверка без сохранения)
+final checkAnswerQuickUseCaseProvider = Provider<CheckAnswerQuickUseCase>((ref) {
+  return const CheckAnswerQuickUseCase();
 });
 
 /// Provider для LoadProgressUseCase
 final loadProgressUseCaseProvider = Provider<LoadProgressUseCase>((ref) {
   final playerRepo = ref.watch(playerRepoProvider);
   final worldRepo = ref.watch(worldRepoProvider);
-  return LoadProgressUseCase(
-    playerRepository: playerRepo,
-    worldRepository: worldRepo,
-  );
+  return LoadProgressUseCase(playerRepo, worldRepo);
 });
 
 /// Provider для LoadPlayerUseCase
@@ -167,10 +165,7 @@ final loadWorldsUseCaseProvider = Provider<LoadWorldsUseCase>((ref) {
 final saveProgressUseCaseProvider = Provider<SaveProgressUseCase>((ref) {
   final playerRepo = ref.watch(playerRepoProvider);
   final worldRepo = ref.watch(worldRepoProvider);
-  return SaveProgressUseCase(
-    playerRepository: playerRepo,
-    worldRepository: worldRepo,
-  );
+  return SaveProgressUseCase(playerRepo, worldRepo);
 });
 
 /// Provider для SavePlayerUseCase
@@ -189,30 +184,21 @@ final saveWorldUseCaseProvider = Provider<SaveWorldUseCase>((ref) {
 final unlockWorldUseCaseProvider = Provider<UnlockWorldUseCase>((ref) {
   final playerRepo = ref.watch(playerRepoProvider);
   final worldRepo = ref.watch(worldRepoProvider);
-  return UnlockWorldUseCase(
-    playerRepository: playerRepo,
-    worldRepository: worldRepo,
-  );
-});
-
-/// Provider для UnlockNextWorldUseCase
-final unlockNextWorldUseCaseProvider = Provider<UnlockNextWorldUseCase>((ref) {
-  final playerRepo = ref.watch(playerRepoProvider);
-  final worldRepo = ref.watch(worldRepoProvider);
-  return UnlockNextWorldUseCase(
-    playerRepository: playerRepo,
-    worldRepository: worldRepo,
-  );
+  return UnlockWorldUseCase(playerRepo, worldRepo);
 });
 
 /// Provider для CanUnlockWorldUseCase
 final canUnlockWorldUseCaseProvider = Provider<CanUnlockWorldUseCase>((ref) {
-  final playerRepo = ref.watch(playerRepoProvider);
   final worldRepo = ref.watch(worldRepoProvider);
-  return CanUnlockWorldUseCase(
-    playerRepository: playerRepo,
-    worldRepository: worldRepo,
-  );
+  return CanUnlockWorldUseCase(worldRepo);
+});
+
+/// Provider для CompleteWorldUseCase
+final completeWorldUseCaseProvider = Provider<CompleteWorldUseCase>((ref) {
+  final worldRepo = ref.watch(worldRepoProvider);
+  final playerRepo = ref.watch(playerRepoProvider);
+  final unlockUseCase = ref.watch(unlockWorldUseCaseProvider);
+  return CompleteWorldUseCase(worldRepo, playerRepo, unlockUseCase);
 });
 
 // ============================================================================

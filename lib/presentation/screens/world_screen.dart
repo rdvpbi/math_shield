@@ -111,7 +111,7 @@ class _WorldScreenState extends ConsumerState<WorldScreen>
                 child: MathHud(
                   currentTask: mathState.currentTask,
                   timeRemaining: mathState.timeRemaining,
-                  score: mathState.score,
+                  score: mathState.sessionScore,
                   combo: mathState.combo,
                   comboMultiplier: 1 + mathState.combo * ComboConstants.multiplierPerCombo,
                   tasksCompleted: mathState.tasksCompleted,
@@ -132,7 +132,7 @@ class _WorldScreenState extends ConsumerState<WorldScreen>
               Padding(
                 padding: const EdgeInsets.all(UIConstants.paddingMedium),
                 child: AnswerPad(
-                  currentInput: mathState.currentInput,
+                  currentInput: mathState.inputValue,
                   isDisabled: mathState.currentTask == null || _showResult,
                   onDigitPressed: _onDigitPressed,
                   onDeletePressed: _onDeletePressed,
@@ -316,7 +316,7 @@ class _WorldScreenState extends ConsumerState<WorldScreen>
     PausePopup.show(
       context,
       worldName: widget.world.name,
-      currentScore: ref.read(mathControllerProvider).score,
+      currentScore: ref.read(mathControllerProvider).sessionScore,
       showRestart: true,
     ).then((action) {
       switch (action) {
@@ -356,7 +356,7 @@ class _WorldScreenState extends ConsumerState<WorldScreen>
     VictoryPopup.show(
       context,
       stars: stars,
-      score: mathState.score,
+      score: mathState.sessionScore,
       bestScore: widget.world.bestScore,
       correctAnswers: mathState.correctAnswers,
       totalAnswers: mathState.tasksCompleted,
@@ -384,7 +384,7 @@ class _WorldScreenState extends ConsumerState<WorldScreen>
 
     DefeatPopup.show(
       context,
-      score: mathState.score,
+      score: mathState.sessionScore,
       correctAnswers: mathState.correctAnswers,
       totalAnswers: mathState.tasksCompleted,
       livesRemaining: gameState.player.lives,

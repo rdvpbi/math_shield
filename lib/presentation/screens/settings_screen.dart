@@ -337,7 +337,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       ),
       child: Column(
         children: [
-          _buildStatRow('Очки', '${player.totalScore}', Icons.star_rounded),
+          _buildStatRow('Очки', '${player.score}', Icons.star_rounded),
           const SizedBox(height: UIConstants.paddingSmall),
           _buildStatRow('Текущий мир', '×${player.currentWorld}', Icons.public_rounded),
           const SizedBox(height: UIConstants.paddingSmall),
@@ -532,7 +532,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   void _resetProgress() {
-    ref.read(gameControllerProvider.notifier).resetProgress();
+    ref.read(gameControllerProvider.notifier).resetGame();
 
     // Показываем подтверждение
     ScaffoldMessenger.of(context).showSnackBar(

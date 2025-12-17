@@ -196,6 +196,12 @@ abstract class UIConstants {
   static const double menuButtonWidth = 200.0;
   static const double menuButtonHeight = 90.0;
 
+  /// Минимальная ширина кнопки
+  static const double buttonMinWidth = 88.0;
+
+  /// Стандартная высота кнопки
+  static const double buttonHeight = 48.0;
+
   /// Размер иконок
   static const double iconSizeSmall = 24.0;
   static const double iconSizeMedium = 48.0;
@@ -272,6 +278,12 @@ abstract class AnimationConstants {
 
   /// Анимация атаки босса
   static const int bossAttackMs = 500;
+
+  /// Анимация поражения босса
+  static const int bossDefeatMs = 800;
+
+  /// Анимация обновления health bar
+  static const int healthBarUpdateMs = 300;
 
   /// Анимация появления комбо
   static const int comboPopMs = 250;

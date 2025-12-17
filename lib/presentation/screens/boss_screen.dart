@@ -10,6 +10,7 @@ import '../../application/controllers/audio_controller.dart';
 import '../../application/controllers/boss_controller.dart';
 import '../../application/controllers/game_controller.dart';
 import '../../application/controllers/math_controller.dart';
+import '../../application/state/boss_state.dart';
 import '../../core/config/game_constants.dart';
 import '../../domain/entities/boss_entity.dart';
 import '../../domain/entities/world_entity.dart';
@@ -161,7 +162,7 @@ class _BossScreenState extends ConsumerState<BossScreen>
                 child: Padding(
                   padding: const EdgeInsets.all(UIConstants.paddingMedium),
                   child: AnswerPad(
-                    currentInput: mathState.currentInput,
+                    currentInput: mathState.inputValue,
                     isDisabled: !_battleStarted ||
                         mathState.currentTask == null ||
                         bossState.isVictory ||
@@ -394,7 +395,7 @@ class _BossScreenState extends ConsumerState<BossScreen>
       context,
       title: 'Босс побеждён!',
       stars: 3, // За победу над боссом всегда 3 звезды
-      score: mathState.score,
+      score: mathState.sessionScore,
       correctAnswers: mathState.correctAnswers,
       totalAnswers: mathState.tasksCompleted,
       maxCombo: ref.read(mathControllerProvider.notifier).maxCombo,
@@ -420,7 +421,7 @@ class _BossScreenState extends ConsumerState<BossScreen>
       context,
       title: 'Босс победил...',
       message: BossTaunts.getDefeatPhrase(widget.world.id),
-      score: mathState.score,
+      score: mathState.sessionScore,
       correctAnswers: mathState.correctAnswers,
       totalAnswers: mathState.tasksCompleted,
       livesRemaining: gameState.player.lives,

@@ -77,6 +77,16 @@ class WorldEntity {
     );
   }
 
+  /// Создаёт пустой мир (для fallback)
+  factory WorldEntity.empty() {
+    return const WorldEntity(
+      id: 0,
+      name: 'Unknown',
+      multiplier: 0,
+      bossName: 'Unknown',
+    );
+  }
+
   /// Проверяет, доступен ли мир для игры
   bool get isPlayable => isUnlocked;
 

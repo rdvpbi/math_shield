@@ -8,6 +8,7 @@ import 'dart:collection';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 
+import '../application/controllers/audio_controller.dart';
 import '../core/config/game_constants.dart';
 
 /// Плеер звуковых эффектов с пулом
